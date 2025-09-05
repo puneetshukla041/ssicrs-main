@@ -1,0 +1,56 @@
+/* 1️⃣ Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
+
+/* 2️⃣ Import Tailwind */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* 3️⃣ Root variables */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-sans: 'Lato', Arial, Helvetica, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+/* 4️⃣ Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* 5️⃣ Global body */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* 6️⃣ Hover underline animation */
+.hover-underline {
+  position: relative;
+  cursor: pointer; /* hand on hover */
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px; /* underline thickness */
+  background-color: currentColor; /* matches text color */
+  transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* 7️⃣ Optional: cursor pointer on all buttons and links */
+button, a {
+  cursor: pointer;
+}

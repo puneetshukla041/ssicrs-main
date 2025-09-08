@@ -8,45 +8,60 @@ export default function RegisterPage() {
   const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value, type } = e.target;
+const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const { id, value, type } = e.target;
 
-    if (type === "checkbox") {
-      const checkboxElement = e.target as HTMLInputElement;
-      if (checkboxElement.checked) {
-        setFormData({
-          ...formData,
-          [id]: [...((formData[id] as string[]) || []), value],
-        });
-      } else {
-        setFormData({
-          ...formData,
-          [id]: ((formData[id] as string[]) || []).filter((v: string) => v !== value),
-        });
-      }
-    } else {
-      setFormData({ ...formData, [id]: value });
+  if (type === "file") {
+    const fileElement = e.target as HTMLInputElement;
+    if (fileElement.files && fileElement.files.length > 0) {
+      setFormData({
+        ...formData,
+        [id]: fileElement.files[0], // store File object
+      });
     }
-  };
+  } else if (type === "checkbox") {
+    const checkboxElement = e.target as HTMLInputElement;
+    if (checkboxElement.checked) {
+      setFormData({
+        ...formData,
+        [id]: [...((formData[id] as string[]) || []), value],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [id]: ((formData[id] as string[]) || []).filter((v: string) => v !== value),
+      });
+    }
+  } else {
+    setFormData({ ...formData, [id]: value });
+  }
+};
 
 const handleSubmit = async () => {
   setLoading(true);
   try {
-    const response = await fetch("http://localhost/ssi_backend/register.php", {
+    const formDataToSend = new FormData();
+
+    Object.entries(formData).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((v) => formDataToSend.append(`${key}[]`, v));
+      } else {
+        formDataToSend.append(key, value as string | Blob);
+      }
+    });
+
+    const response = await fetch("http://localhost/backend-php/register.php", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+      body: formDataToSend, // no need for headers here
     });
 
     const result = await response.json();
 
-    if (result.status === "success") {
+    if (result.success) {
       alert("✅ Registration Successful!");
       setFormData({});
     } else {
-      alert("❌ Registration Failed: " + result.message);
+      alert("❌ Registration Failed: " + (result.error || "Unknown error"));
     }
   } catch (error) {
     alert("❌ Error submitting form: " + error);

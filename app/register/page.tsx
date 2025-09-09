@@ -51,10 +51,14 @@ const handleSubmit = async () => {
     for (const key in formData) {
       const value = formData[key];
       if (Array.isArray(value)) {
-        value.forEach(item => formDataObj.append(key, item));
+        value.forEach(item => {
+          if (typeof item === 'string') {
+            formDataObj.append(key, item);
+          }
+        });
       } else if (value instanceof File) {
         formDataObj.append(key, value);
-      } else if (typeof value === 'string' || typeof value === 'number') {
+      } else if (value !== null && value !== undefined) {
         formDataObj.append(key, String(value));
       }
     }

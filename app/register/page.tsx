@@ -40,23 +40,18 @@ const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
 const handleSubmit = async () => {
   setLoading(true);
   try {
-    const formDataToSend = new FormData();
+    const formDataObj = new FormData();
 
-    Object.entries(formData).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((v) => formDataToSend.append(`${key}[]`, v));
-      } else {
-        formDataToSend.append(key, value as string | Blob);
-      }
-    });
+    for (const key in formData) {
+      formDataObj.append(key, formData[key] as any);
+    }
 
-    const response = await fetch("http://localhost/backend-php/register.php", {
+    const response = await fetch("/api/register", {
       method: "POST",
-      body: formDataToSend, // no need for headers here
+      body: formDataObj, // send as FormData, not JSON
     });
 
     const result = await response.json();
-
     if (result.success) {
       alert("✅ Registration Successful!");
       setFormData({});
@@ -69,6 +64,9 @@ const handleSubmit = async () => {
     setLoading(false);
   }
 };
+
+
+
 
 
   const containerVariants = {

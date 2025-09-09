@@ -3,10 +3,15 @@
 import { motion } from "framer-motion";
 import { useState, ChangeEvent } from "react";
 
+type FormValue = string | number | boolean | File | string[] | null;
+
 export default function RegisterPage() {
-  const [formData, setFormData] = useState<Record<string, unknown>>({});
+  const [formData, setFormData] = useState<Record<string, FormValue>>({});
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState({ text: "", type: "" });
+  const [message, setMessage] = useState<{ text: string; type: "success" | "error" | "" }>({
+    text: "",
+    type: "",
+  });
 
   const showMessage = (text: string, type: "success" | "error") => {
     setMessage({ text, type });
@@ -627,7 +632,7 @@ export default function RegisterPage() {
                   htmlFor="termsAgree"
                   className="text-xs md:text-sm font-medium text-[#401323] text-left cursor-pointer"
                 >
-                  By clicking on "Register Now", you agree to our{" "}
+                  By clicking on &quot;Register Now&quot;, you agree to our{" "}
                   <a
                     href="#"
                     className="text-blue-500 cursor-pointer hover:underline"

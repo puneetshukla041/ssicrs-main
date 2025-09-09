@@ -8,7 +8,7 @@ export default function RegisterPage() {
   const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [loading, setLoading] = useState(false);
 
-const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
   const { id, value, type } = e.target;
 
   if (type === "file") {
@@ -16,7 +16,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     if (fileElement.files && fileElement.files.length > 0) {
       setFormData({
         ...formData,
-        [id]: fileElement.files[0], // store File object
+        [id]: fileElement.files[0],
       });
     }
   } else if (type === "checkbox") {
@@ -36,6 +36,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setFormData({ ...formData, [id]: value });
   }
 };
+
 
 const handleSubmit = async () => {
   setLoading(true);
@@ -240,47 +241,95 @@ const handleSubmit = async () => {
               />
             </motion.div>
 
-            {/** How Did You Hear About Us? */}
-            <motion.div variants={itemVariants}>
-              <label htmlFor="hearAboutUs" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">How Did You Hear About Us?</label>
-              <motion.input
-                id="hearAboutUs"
-                type="text"
-                placeholder="e.g., Conference, Social Media, Colleague"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
-                onChange={handleChange}
-                whileHover={inputHover}
-                whileFocus={inputFocus}
-              />
-            </motion.div>
+{/** How Did You Hear About Us? */}
+<motion.div variants={itemVariants}>
+  <label
+    htmlFor="hearAboutUs"
+    className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]"
+  >
+    How Did You Hear About Us?
+  </label>
+  <motion.select
+    id="hearAboutUs"
+    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+    onChange={handleChange}
+    whileHover={inputHover}
+    whileFocus={inputFocus}
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Select an option
+    </option>
+    <option value="Website">Website</option>
+    <option value="Social Media">Social Media</option>
+    <option value="Colleague Referral">Colleague Referral</option>
+    <option value="Conference">Conference</option>
+    <option value="Other">Other</option>
+  </motion.select>
+</motion.div>
 
-            {/** Current Profession */}
-            <motion.div variants={itemVariants}>
-              <label htmlFor="currentProfession" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Current Profession</label>
-              <motion.input
-                id="currentProfession"
-                type="text"
-                placeholder="Enter Your Current Profession"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
-                onChange={handleChange}
-                whileHover={inputHover}
-                whileFocus={inputFocus}
-              />
-            </motion.div>
 
-            {/** Specialization */}
-            <motion.div variants={itemVariants}>
-              <label htmlFor="specialization" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Specialization</label>
-              <motion.input
-                id="specialization"
-                type="text"
-                placeholder="Enter Your Specialization"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
-                onChange={handleChange}
-                whileHover={inputHover}
-                whileFocus={inputFocus}
-              />
-            </motion.div>
+{/** Current Profession */}
+<motion.div variants={itemVariants}>
+  <label
+    htmlFor="currentProfession"
+    className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]"
+  >
+    Current Profession
+  </label>
+  <motion.select
+    id="currentProfession"
+    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+    onChange={handleChange}
+    whileHover={inputHover}
+    whileFocus={inputFocus}
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Select Your Current Profession
+    </option>
+    <option value="Surgeon">Surgeon</option>
+    <option value="Assistant Surgeon">Assistant Surgeon</option>
+    <option value="Anesthesiologist">Anesthesiologist</option>
+    <option value="Nurse">Nurse</option>
+    <option value="Technician">Technician</option>
+    <option value="Bio Medical Engineer">Bio Medical Engineer</option>
+    <option value="Others">Others (Please Specify)</option>
+  </motion.select>
+</motion.div>
+
+{/** Specialization */}
+<motion.div variants={itemVariants}>
+  <label
+    htmlFor="specialization"
+    className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]"
+  >
+    Specialization
+  </label>
+  <motion.select
+    id="specialization"
+    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+    onChange={handleChange}
+    whileHover={inputHover}
+    whileFocus={inputFocus}
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Select Your Specialization
+    </option>
+    <option value="Urology">Urology</option>
+    <option value="Gynecology">Gynecology</option>
+    <option value="Cardiac">Cardiac</option>
+    <option value="Thoracic">Thoracic</option>
+    <option value="General Surgery">General Surgery</option>
+    <option value="Head and Neck">Head and Neck</option>
+    <option value="Colorectal">Colorectal</option>
+    <option value="Pediatric">Pediatric</option>
+    <option value="Oncology">Oncology</option>
+    <option value="Others">Others (Please Specify)</option>
+  </motion.select>
+</motion.div>
+
 
             {/** Learning Goals */}
             <motion.div variants={itemVariants} className="md:col-span-2">
@@ -340,15 +389,15 @@ const handleSubmit = async () => {
                 <div className="flex flex-col gap-3">
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
                     <input type="checkbox" id="additionalPrograms" value="Advanced Surgical Techniques" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
-                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Advanced Surgical Techniques</label>
+                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">MantraSync Tele-Surgery Program</label>
                   </motion.div>
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
                     <input type="checkbox" id="additionalPrograms" value="Robotic Systems Maintenance" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
-                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Robotic Systems Maintenance</label>
+                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Animal Lab Training</label>
                   </motion.div>
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
                     <input type="checkbox" id="additionalPrograms" value="Post-Op Robotic Care" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
-                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Post-Op Robotic Care</label>
+                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Cadaver Lab Training</label>
                   </motion.div>
                 </div>
               </motion.div>

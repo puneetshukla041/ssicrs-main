@@ -8,7 +8,10 @@ type FormValue = string | number | boolean | File | string[] | null;
 export default function RegisterPage() {
   const [formData, setFormData] = useState<Record<string, FormValue>>({});
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{ text: string; type: "success" | "error" | "" }>({
+  const [message, setMessage] = useState<{
+    text: string;
+    type: "success" | "error" | "";
+  }>({
     text: "",
     type: "",
   });
@@ -77,7 +80,10 @@ export default function RegisterPage() {
 
       const result = await response.json();
       if (result.success) {
-        showMessage("Registration Successful!", "success");
+        showMessage(
+          `Registration Successful! Your ticket number is: ${result.ticketNo}`,
+          "success"
+        );
         setFormData({});
       } else {
         showMessage(
@@ -163,8 +169,8 @@ export default function RegisterPage() {
           className="text-base md:text-xl text-center text-[#401323] leading-relaxed mt-6 md:mt-8"
           variants={textVariants}
         >
-          Please complete the form below to enroll into our comprehensive
-          robotic surgery training programs.
+          Please complete the form below to enroll into our comprehensive robotic
+          surgery training programs.
           <br className="hidden md:block" />
           Upon successful registration, our team will reach out with program
           details, schedules, and next steps.
@@ -402,7 +408,6 @@ export default function RegisterPage() {
                 <option value="Others">Others (Please Specify)</option>
               </motion.select>
             </motion.div>
-
             {/* Learning Goals */}
             <motion.div variants={itemVariants} className="md:col-span-2">
               <label

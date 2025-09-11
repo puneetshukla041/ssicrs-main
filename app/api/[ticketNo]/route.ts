@@ -1,16 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
-import Registration from "@/models/Registration";
+import Registration from "@/models/Registration"; // ✅ default import
 
+// GET /api/registrations/[ticketNo]
 export async function GET(
-  _req: NextRequest,
-  { params }: { params: Promise<{ ticketNo: string }> }
+  _req: Request,
+  { params }: { params: { ticketNo: string } }
 ) {
   try {
     await connectDB();
 
-    // Await params because Next.js 15 provides it as a Promise
-    const { ticketNo } = await params;
+    const { ticketNo } = params;
     const parsedTicketNo = Number(ticketNo);
 
     if (!ticketNo || isNaN(parsedTicketNo)) {

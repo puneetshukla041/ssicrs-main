@@ -24,6 +24,7 @@ export interface IRegistration extends Document {
 
 export interface RegistrationModel extends Model<IRegistration> {
   getNextTicketNo(): Promise<number>;
+  
 }
 
 const RegistrationSchema = new Schema<IRegistration, RegistrationModel>(

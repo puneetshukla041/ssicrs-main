@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
-import Registration from "@/models/Registration"; // ✅ default import
+import Registration from "@/models/Registration";
 
 // GET /api/registrations/[ticketNo]
 export async function GET(
-  _req: Request,
-  { params }: { params: { ticketNo: string } }
+  request: NextRequest,
+  { params }: { params: { ticketNo: string } } // ✅ make sure ticketNo is string
 ) {
   try {
     await connectDB();

@@ -4,12 +4,12 @@ import Header from "@/components/Header";
 import SecondSection from "@/components/home/secondsection";
 import ThirdSection from "@/components/home/thirdsection";
 import FourthSection from "@/components/home/fourthsection";
+import FifthSection from "@/components/home/fifthsection";
 import SixthSection from "@/components/home/sixthsection";
 import SeventhSection from "@/components/home/seventhsection";
-import FifthSection from "@/components/home/fifthsection";
+import Footer from "@/components/Footer";
+import Slider from "@/components/home/slider"; // Import your slider component
 import { motion } from "framer-motion";
-import Footer from "@/components/Footer"; 
-
 import Image from "next/image";
 
 export default function HomePage() {
@@ -21,12 +21,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative w-full h-screen">
         {/* Background Image */}
-<Image
-  src="/images/image1.webp"
-  alt="SSICrs"
-  fill
-  style={{ objectFit: "cover" }}
-/>
+        <Image
+          src="/images/image1.webp"
+          alt="SSICrs"
+          fill
+          style={{ objectFit: "cover" }}
+        />
 
         {/* Centered Text with scroll-triggered animation */}
         <motion.div
@@ -63,21 +63,30 @@ export default function HomePage() {
       {/* ✅ White Section Below Hero */}
       <SecondSection />
 
-            {/* ✅ White Section Below Hero */}
-      <ThirdSection />
 
-      
-            {/* ✅ White Section Below Hero */}
+
+      {/* Remaining Sections */}
+      <ThirdSection />
+    
       <FourthSection />
 
+    <section className="w-full bg-white py-[100px]">
+  <div className="max-w-[1920px] mx-auto flex flex-col gap-[42px] h-[477px]">
+    <Slider />
+  </div>
+</section>
 
-<FifthSection />
-<div style={{ height: "60px", backgroundColor: "#ffffff" }} /> {/* 5 lines white gap */}
- <SixthSection />
-<SeventhSection />
 
 
-            {/* Footer */}
+      <FifthSection />
+
+      {/* White gap */}
+      <div style={{ height: "60px", backgroundColor: "#ffffff" }} />
+
+      <SixthSection />
+      <SeventhSection />
+
+      {/* Footer */}
       <Footer />
     </div>
   );

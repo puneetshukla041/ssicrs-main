@@ -7,7 +7,7 @@ export default function ThirdSection() {
     <section className="relative w-full min-h-screen">
       {/* Fullscreen Image */}
       <Image
-        src="/images/section3image.webp"
+        src="/images/section3image.png"
         alt="Section 3 Background"
         fill
         priority

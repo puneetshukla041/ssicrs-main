@@ -11,6 +11,9 @@ const lato = Lato({ variable: "--font-lato", subsets: ["latin"], weight: "400" }
 export const metadata: Metadata = {
   title: "SSICRS",
   description: "Professional web & mobile app",
+  icons: {
+    icon: "/logos/ssicrs.png", // ✅ favicon
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -24,5 +27,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-  
 }

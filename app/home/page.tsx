@@ -71,7 +71,7 @@ export default function HomePage() {
       <FourthSection />
 
     <section className="w-full bg-white py-[100px]">
-  <div className="max-w-[1920px] mx-auto flex flex-col gap-[42px] h-[477px]">
+  <div className="max-w-[1920px] mx-auto flex flex-col gap-[42px] h-[600px]">
     <Slider />
   </div>
 </section>

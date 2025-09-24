@@ -57,7 +57,7 @@ const SecondSection = () => {
 
   <p className="font-lato text-[15px] md:text-[16px] text-[#401323] leading-relaxed">
     Through our programs, surgeons and surgical teams <br />develop the expertise to lead a worldwide movement <br />
-    in decentralizing robotic surgery, bringing advanced <br />care to every corner of the world, 
+    in decentralizing robotic surgery, bringing advanced <br />care to every corner of the world,
     including<br /> underserved regions.
   </p>
 </div>

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function FourthSection() {
   return (
-<section className="w-full bg-white min-h-[120vh] flex flex-col items-start justify-start relative">
+<section className="w-full bg-white min-h-[110vh] flex flex-col items-start justify-start relative">
   <div className="hidden md:block w-full relative">
       {/* Heading */}
       <h2

@@ -34,8 +34,10 @@ export default function Header({ className = "" }: HeaderProps) {
   const handleNavClick = (item: string) => {
     if (item === "Home") {
       router.push("/home");
+    } else if (item === "About Us") {
+      router.push("/aboutus"); // App Router path
     } else {
-      // Handle other navigation links here if needed in the future
+      // Handle other navigation links if needed
     }
     setMobileNavOpen(false); // Close mobile nav after clicking
   };
@@ -52,18 +54,17 @@ export default function Header({ className = "" }: HeaderProps) {
     <header
       className={`w-full py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className} px-4 md:px-12 lg:px-24`}
     >
-{/* Left Side - Logo */}
-<div className="flex-shrink-0 flex items-center h-12 md:h-15">
-  <Image
-    src={logoSrc}
-    alt="SSI Studios Logo"
-    width={260} // increased from 220
-    height={0}
-    className="max-h-[120%] w-auto transition-all duration-500 object-contain" 
-    priority
-  />
-</div>
-
+      {/* Left Side - Logo */}
+      <div className="flex-shrink-0 flex items-center h-12 md:h-15">
+        <Image
+          src={logoSrc}
+          alt="SSI Studios Logo"
+          width={260}
+          height={0}
+          className="max-h-[120%] w-auto transition-all duration-500 object-contain"
+          priority
+        />
+      </div>
 
       {/* Hamburger Menu Button (mobile) */}
       <button

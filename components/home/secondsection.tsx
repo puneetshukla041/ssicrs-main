@@ -63,17 +63,16 @@ const SecondSection = () => {
 </div>
 
 
-        {/* Right: Image */}
-<div className="flex justify-center md:justify-end md:pr-[-20] md:w-[700px]">
+{/* Right: Image */}
+<div className="flex justify-center md:justify-end md:w-[750px] ml-auto">
   <img
     src="/images/image2.webp"
     alt="Decorative"
     width={1400}
     height={900}
-    className="w-full h-auto object-cover rounded-2xl shadow-2xl transform md:translate-x-0"
+    className="w-full h-auto object-cover rounded-2xl shadow-2xl"
   />
 </div>
-
 
       </div>
 

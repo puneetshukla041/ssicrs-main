@@ -35,7 +35,7 @@ export default function ThirdSection() {
               color: "#F2F0E4",
             }}
           >
-            Empowering the next generation of surgeons <br />
+            Empowering the next generation of surgeons 
             to transform healthcare with innovation and compassion
           </h2>
         </div>

@@ -1,4 +1,5 @@
 // components/Header.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -39,24 +40,30 @@ export default function Header({ className = "" }: HeaderProps) {
     setMobileNavOpen(false); // Close mobile nav after clicking
   };
 
+  // Header styling logic
   const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
   const headerShadow = isRegisterPage ? "shadow-md" : scrolled ? "shadow-md" : "shadow-none";
   const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
+
+  // Logo switching logic
+  const logoSrc = isRegisterPage || scrolled ? "/logos/ssicrshead1.png" : "/logos/ssicrshead2.png";
 
   return (
     <header
       className={`w-full py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className} px-4 md:px-12 lg:px-24`}
     >
-      {/* Left Side - Logo */}
-      <div className="flex-shrink-0">
-        <Image
-          src="/logos/ssicrs.png"
-          alt="SSI Studios Logo"
-          width={150}
-          height={50}
-          className="h-12 w-auto"
-        />
-      </div>
+{/* Left Side - Logo */}
+<div className="flex-shrink-0 flex items-center h-12 md:h-15">
+  <Image
+    src={logoSrc}
+    alt="SSI Studios Logo"
+    width={260} // increased from 220
+    height={0}
+    className="max-h-[120%] w-auto transition-all duration-500 object-contain" 
+    priority
+  />
+</div>
+
 
       {/* Hamburger Menu Button (mobile) */}
       <button
@@ -97,11 +104,10 @@ export default function Header({ className = "" }: HeaderProps) {
 
         {/* Register Now Button with brown background touching top of header */}
         <div className="relative flex items-center">
-          {/* Brown background behind button, touches top of nav */}
           <div
             className="absolute top-[-20] left-0 w-full"
             style={{
-              height: "170%", // same as nav height
+              height: "170%",
               backgroundColor: "#A67950",
               borderBottomLeftRadius: "25px",
               borderBottomRightRadius: "25px",
@@ -109,7 +115,6 @@ export default function Header({ className = "" }: HeaderProps) {
             }}
           ></div>
 
-          {/* Button on top */}
           <button
             onClick={goToRegister}
             className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
@@ -137,7 +142,6 @@ export default function Header({ className = "" }: HeaderProps) {
             </button>
           ))}
 
-          {/* Mobile Register Button */}
           <button
             onClick={goToRegister}
             className="mt-4 w-full px-4 py-2 rounded transition-colors"
